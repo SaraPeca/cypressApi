@@ -4,25 +4,9 @@ describe('Atualizar dispositivo',() =>{
     const dataAtual = new Date().toISOString().slice(0 ,10)
     it('Atualizar dispositivo',() =>{
        
-        const body_post = {
-            "name": "Apple MacBook Pro 16",
-            "data": {
-               "year": 2019,
-               "price": 1849.99,
-               "CPU model": "Intel Core i9",
-               "Hard disk size": "1 TB"
-            }  
-         }
+        const body_post = require('../fixtures/cadastro_device_sucesso.json')
 
-         const body_put = {
-            "name": "Apple Iphone Pro 16",
-            "data": {
-               "year": 2019,
-               "price": 1849.99,
-               "CPU model": "Intel Core i9",
-               "Hard disk size": "1 TB"
-            }  
-         }
+         const body_put = require('../fixtures/altera_device_sucesso.json')
 
          cy.CadastrarDevice(body_post)
             .then((response_post)=>{
@@ -42,15 +26,7 @@ describe('Atualizar dispositivo',() =>{
     })
 
     it('Atualizar sem informar o body',() =>{
-        const body_post = {
-            "name": "Apple MacBook Pro 16",
-            "data": {
-               "year": 2019,
-               "price": 1849.99,
-               "CPU model": "Intel Core i9",
-               "Hard disk size": "1 TB"
-            }  
-         }
+        const body_post = require('../fixtures/cadastro_device_sucesso.json')
 
          const body_put = ''
 
