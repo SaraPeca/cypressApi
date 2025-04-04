@@ -14,15 +14,7 @@ describe('Cadastrar dispositivo',() => {
             }
          }
 
-        cy.request({
-            method: 'POST',
-            url: '/objects',
-            failOnStatusCode: false,
-            body: body
-        }).as('postDeviceResult')
-
-    //validações
-        cy.get('@postDeviceResult')
+        cy.CadastrarDevice(body)
             .then((response)=>{
                 expect(response.status).equal(200)
                 expect(response.body.id).not.empty
@@ -42,15 +34,7 @@ describe('Cadastrar dispositivo',() => {
     it('Cadastrar dispositivo sem dados', () => {
         const body = ''
 
-        cy.request({
-            method: 'POST',
-            url: '/objects',
-            failOnStatusCode: false,
-            body: body
-        }).as('postDeviceResult')
-
-    //validações
-        cy.get('@postDeviceResult')
+        cy.CadastrarDevice(body)
             .then((response)=>{
                 expect(response.status).equal(400)
                 expect(response.body.error).equal('400 Bad Request. If you are trying to create or update the data, potential issue is that you are sending incorrect body json or it is missing at all.')

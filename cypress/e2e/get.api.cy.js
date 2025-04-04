@@ -6,13 +6,7 @@ describe('Buscar dispositivos',() =>{
     it('Buscar dispositivo específico',() =>{
         const device_id = '7'
 
-        cy.request({
-            method: 'GET',
-            url: `/objects/${device_id}`,
-            failOnStatusCode: false
-        }).as('getDeviceResult')
-    //validações
-        cy.get('@getDeviceResult')
+        cy.BuscarDeviceEspecifico(device_id)
             .then((response)=>{
                 expect(response.status).equal(200)
 
@@ -30,13 +24,7 @@ describe('Buscar dispositivos',() =>{
 
     it('Buscar dispositivo inexistente', () => {
         const device_id ='invalidId'
-        cy.request({
-            method: 'GET',
-            url: `/objects/${device_id}`,
-            failOnStatusCode: false
-        }).as('getInvalidDeviceResult')
-
-        cy.get('@getInvalidDeviceResult')
+        cy.BuscarDeviceEspecifico(device_id)
             .then((response_invalid) =>{
                 expect(response_invalid.status).equal(404)
                 expect(response_invalid.body.error).equal(`Oject with id=${device_id} was not found.`)
